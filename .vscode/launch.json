@@ -1,0 +1,83 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Axios: Debug Unit Tests",
+      "type": "node",
+      "request": "launch",
+      "runtimeArgs": ["--inspect-brk"],
+      "program": "${workspaceFolder}/node_modules/vitest/vitest.mjs",
+      "args": ["run", "--project", "unit"],
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen",
+      "skipFiles": ["<node_internals>/**"]
+    },
+    {
+      "name": "Axios: Debug Current Test File",
+      "type": "node",
+      "request": "launch",
+      "runtimeArgs": ["--inspect-brk"],
+      "program": "${workspaceFolder}/node_modules/vitest/vitest.mjs",
+      "args": ["run", "--project", "unit", "${file}"],
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen",
+      "skipFiles": ["<node_internals>/**"]
+    },
+    {
+      "name": "Axios: Debug GET Flow (http adapter)",
+      "type": "node",
+      "request": "launch",
+      "runtimeArgs": ["--inspect-brk"],
+      "program": "${workspaceFolder}/node_modules/vitest/vitest.mjs",
+      "args": [
+        "run",
+        "--project",
+        "unit",
+        "tests/unit/adapters/http.test.js",
+        "-t",
+        "should support IPv4 literal strings"
+      ],
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen",
+      "skipFiles": ["<node_internals>/**"]
+    },
+    {
+      "name": "Axios: Debug GET Flow (fetch adapter)",
+      "type": "node",
+      "request": "launch",
+      "runtimeArgs": ["--inspect-brk"],
+      "program": "${workspaceFolder}/node_modules/vitest/vitest.mjs",
+      "args": [
+        "run",
+        "--project",
+        "unit",
+        "tests/unit/adapters/fetch.test.js",
+        "-t",
+        "should support IPv4 literal strings"
+      ],
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen",
+      "skipFiles": ["<node_internals>/**"]
+    },
+    {
+      "name": "Axios: Run Examples Server",
+      "type": "node",
+      "request": "launch",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "examples"],
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen",
+      "skipFiles": ["<node_internals>/**"]
+    },
+    {
+      "name": "Axios: Run Sandbox Server",
+      "type": "node",
+      "request": "launch",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "start"],
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen",
+      "skipFiles": ["<node_internals>/**"]
+    }
+  ]
+}
