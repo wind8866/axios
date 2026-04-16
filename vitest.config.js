@@ -41,6 +41,32 @@ export default defineConfig({
           setupFiles: ['tests/setup/browser.setup.js'],
         },
       },
+      {
+        test: {
+          name: 'browser-debug',
+          include: ['tests/browser/**/*.browser.test.js'],
+          browser: {
+            enabled: true,
+            provider: playwright({
+              launchOptions: {
+                headless: false,
+                devtools: true,
+                slowMo: 80,
+              },
+            }),
+            instances: [{ browser: 'chromium' }],
+          },
+          setupFiles: ['tests/setup/browser.setup.js'],
+        },
+      },
+      {
+        test: {
+          name: 'unit-browser',
+          environment: 'jsdom',
+          include: ['tests/browser/**/*.browser.test.js'],
+          setupFiles: ['tests/setup/browser.setup.js'],
+        },
+      },
     ],
   },
 });

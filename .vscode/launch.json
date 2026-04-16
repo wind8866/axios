@@ -42,7 +42,29 @@
       "skipFiles": ["<node_internals>/**"]
     },
     {
-      "name": "Axios: Debug GET Flow (fetch adapter)",
+      "name": "Axios: Debug Browser Tests (Chromium)",
+      "type": "node",
+      "request": "launch",
+      "runtimeArgs": ["--inspect-brk"],
+      "program": "${workspaceFolder}/node_modules/vitest/vitest.mjs",
+      "args": ["run", "--project", "browser"],
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen",
+      "skipFiles": ["<node_internals>/**"]
+    },
+    {
+      "name": "Axios: Debug Current Browser Test File",
+      "type": "node",
+      "request": "launch",
+      "runtimeArgs": ["--inspect-brk"],
+      "program": "${workspaceFolder}/node_modules/vitest/vitest.mjs",
+      "args": ["run", "--project", "browser", "${file}"],
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen",
+      "skipFiles": ["<node_internals>/**"]
+    },
+    {
+      "name": "Axios: Debug Current Browser Test by Name",
       "type": "node",
       "request": "launch",
       "runtimeArgs": ["--inspect-brk"],
@@ -50,10 +72,50 @@
       "args": [
         "run",
         "--project",
-        "unit",
-        "tests/unit/adapters/fetch.test.js",
+        "browser",
+        "${file}",
         "-t",
-        "should support IPv4 literal strings"
+        "${input:vitestBrowserTestName}"
+      ],
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen",
+      "skipFiles": ["<node_internals>/**"]
+    },
+    {
+      "name": "Axios: Debug Current Browser Test File (DevTools)",
+      "type": "node",
+      "request": "launch",
+      "runtimeArgs": ["--inspect-brk"],
+      "program": "${workspaceFolder}/node_modules/vitest/vitest.mjs",
+      "args": ["--project", "browser-debug", "${file}"],
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen",
+      "skipFiles": ["<node_internals>/**"]
+    },
+    {
+      "name": "Axios: Step-Debug Browser Test (jsdom)",
+      "type": "node",
+      "request": "launch",
+      "runtimeArgs": ["--inspect-brk"],
+      "program": "${workspaceFolder}/node_modules/vitest/vitest.mjs",
+      "args": ["run", "--project", "unit-browser", "${file}"],
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen",
+      "skipFiles": ["<node_internals>/**"]
+    },
+    {
+      "name": "Axios: Step-Debug Browser Test by Name (jsdom)",
+      "type": "node",
+      "request": "launch",
+      "runtimeArgs": ["--inspect-brk"],
+      "program": "${workspaceFolder}/node_modules/vitest/vitest.mjs",
+      "args": [
+        "run",
+        "--project",
+        "unit-browser",
+        "${file}",
+        "-t",
+        "${input:vitestBrowserTestName}"
       ],
       "console": "integratedTerminal",
       "internalConsoleOptions": "neverOpen",
@@ -78,6 +140,14 @@
       "console": "integratedTerminal",
       "internalConsoleOptions": "neverOpen",
       "skipFiles": ["<node_internals>/**"]
+    }
+  ],
+  "inputs": [
+    {
+      "id": "vitestBrowserTestName",
+      "type": "promptString",
+      "description": "Vitest test name pattern for -t (example: should support basic auth)",
+      "default": "should support"
     }
   ]
 }

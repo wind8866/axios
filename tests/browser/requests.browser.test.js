@@ -20,7 +20,7 @@ class MockXMLHttpRequest {
     this.onerror = null;
     this.ontimeout = null;
     this.upload = {
-      addEventListener() {},
+      addEventListener() { },
     };
   }
 
@@ -34,7 +34,7 @@ class MockXMLHttpRequest {
     this.requestHeaders[key] = value;
   }
 
-  addEventListener() {}
+  addEventListener() { }
 
   getAllResponseHeaders() {
     return Object.entries(this.responseHeaders)
@@ -124,6 +124,7 @@ describe('requests (vitest browser)', () => {
   });
 
   it('should treat single string arg as url', async () => {
+    debugger
     const { request, promise } = startRequest('/foo');
 
     expect(request.url).toBe('/foo');
